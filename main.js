@@ -42,6 +42,7 @@ function dayOfTheWeek(day, month, year) {
 
 function fetchWeatherData() {
     console.log(`Fetching weather data for: ${cityInput}`);
+    app.style.opacity = "0"; // Set opacity to 0 before fetching data
     fetch(`https://api.weatherapi.com/v1/current.json?key=fbd252bafee240bb9af70255242305&q=${cityInput}&aqi=no`)
         .then(response => response.json())
         .then(data => {
@@ -112,14 +113,15 @@ function fetchWeatherData() {
                 app.style.backgroundImage = `url(./images/${timeOfDay}/snowy.jpg)`;
                 btn.style.background = timeOfDay === "night" ? "#1b1b1b" : "#4d72aa";
             }
-            app.style.opacity = "1";
+            app.style.opacity = "1"; // Set opacity back to 1 after data is fetched and UI updates are made
 
         })
         .catch(() => {
             alert('City not found, please try again');
-            app.style.opacity = "1";
+            app.style.opacity = "1"; // Set opacity back to 1 in case of error
         });
 }
 
 fetchWeatherData();
-app.style.opacity = "1";
+app.style.opacity = "1"; // Set initial opacity to 1
+
